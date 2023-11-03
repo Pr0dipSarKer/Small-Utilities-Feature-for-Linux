@@ -1,0 +1,84 @@
+#!/bin/bash
+clear
+
+menu(){
+	echo "----------------------------"
+	echo 
+	echo "	MAIN - MENU"
+	echo
+	echo "----------------------------"
+	echo
+	echo "1. See ongoing Processes note: Press [q] to return to main menu"
+	echo "2. Users currently logged in"
+	echo "3. Number of users currently logged in"
+	echo "4. Users with bash shell"
+    echo "5. Get current file path "
+    echo "6. Change directory "
+    echo "7. Copy file"
+    echo "8. Play video"
+	echo "9. Guessing game to pass time "
+	echo "10.Exit"
+	echo "----------------------------"
+	echo
+	echo "Please enter option [1 - 10]:"  
+}
+
+option=y
+while [ "$option" != "10" ]
+do
+	menu 
+	read option
+	case $option in
+		1)
+		top
+		 echo " ";;
+	 
+		2) who;;
+		3) who | wc -l;;
+		4) ps aux | grep bash | grep -v grep | cut -d " " -f 1 | sort | uniq;;
+        5) pwd;;
+        6) echo "enter path"
+           read n
+           cd /n;;
+        7) echo "enter path with file name"
+           read h
+           cp /h;;
+        8) echo "Enter video name"
+           read k
+           mplayer k.mp4;;
+        9) echo "***Extended guessing gme****"
+echo "Welcomme to the number game"
+echo "Guess a number between 1 and 20"
+
+RANGE=20 
+number=$RANDOM
+let "number %= $RANGE" 
+
+for i in 1 2 3 4 5 6 
+do
+	read value
+	if [ "$value" -lt "$number" ] 
+		then 
+			echo "Too small"
+			echo "Try again"
+	elif [ "$value" -gt "$number" ] 
+		then 
+			echo "Too big"
+			echo "Try again"
+	else 
+		echo "You Won!"
+		exit
+	fi
+done
+
+echo "You lost!";;
+		10) break;; 
+		*) echo "Wrong option";;
+esac
+
+read -p "Press [enter] key to continue..."
+clear
+
+done
+
+clear

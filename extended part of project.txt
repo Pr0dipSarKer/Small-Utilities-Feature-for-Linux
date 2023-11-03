@@ -1,0 +1,27 @@
+
+***Extended guessing gme****
+echo "Welcomme to the number game"
+echo "Guess a number between 1 and 20"
+
+RANGE=20 # our upperbound on the range 
+number=$RANDOM
+let "number %= $RANGE" 
+
+for i in 1 2 3 4 5 6 
+do
+	read value
+	if [ "$value" -lt "$number" ] 
+		then 
+			echo "Too small"
+			echo "Try again"
+	elif [ "$value" -gt "$number" ] 
+		then 
+			echo "Too big"
+			echo "Try again"
+	else 
+		echo "You Won!"
+		exit
+	fi
+done
+
+echo "You lost!"
